@@ -25,11 +25,6 @@ def connect() -> str:
     return "True"
 
 
-@app.route('/close_server')
-def close_server():
-    os.abort()
-
-
 @app.route('/', methods=['get'])
 def root() -> str:
     return "True"
