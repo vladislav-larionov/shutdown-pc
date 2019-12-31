@@ -114,15 +114,4 @@
 
     </LinearLayout>
 
-    <Button
-        android:id = "@+id/killServer"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginStart = "17dp"
-        android:layout_marginTop = "9dp"
-        android:text = "@string/killServer"
-        android:onClick="onClickKillServer"
-        app:layout_constraintStart_toEndOf = "@+id/imageButton"
-        app:layout_constraintTop_toTopOf = "parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

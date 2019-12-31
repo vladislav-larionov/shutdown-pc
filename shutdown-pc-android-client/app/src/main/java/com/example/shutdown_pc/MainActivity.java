@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity
     private String SERVER_ADDRESS = "http://192.168.1.44:5000";
     private String CONNECT_URL = SERVER_ADDRESS + "/connect";
     private String SHUTDOWN_URL = SERVER_ADDRESS + "/shutdown";
-    private String KILL_SERVER_URL = SERVER_ADDRESS + "/close_server";
     private String CANCEL_SHUTDOWN_URL = SERVER_ADDRESS + "/shutdown_cancel";
     private String SHUTDOWN_AFTER_URL = SERVER_ADDRESS + "/shutdown?time=";
 
@@ -75,12 +74,6 @@ public class MainActivity extends AppCompatActivity
     public void onClickConnect(View view)
     {
         new ConnectTask().execute(CONNECT_URL);
-    }
-
-    public void onClickKillServer(View view)
-    {
-        new RequestTask().execute(KILL_SERVER_URL);
-        setStatus(false);
     }
 
     private Integer readTime()
