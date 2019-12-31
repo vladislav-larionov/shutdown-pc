@@ -1,0 +1,26 @@
+<resources>
+    <string name = "app_name">shutdown-pc</string>
+    <string name = "connected">Connected</string>
+    <string name = "disconnected">Disconnected</string>
+    <string name = "connect">Connect</string>
+    <string name = "shutdown">Shutdown</string>
+    <string name = "restart">Restart</string>
+    <string name = "status">Status:</string>
+    <string name = "path">http://192.168.1.44:5000/connect</string>
+    <string name = "useCustomTime">Use custom time</string>
+    <string name = "cancel">Cancel shutdown</string>
+    <string name = "exit">Exit</string>
+    <string name = "killServer">Kill server</string>
+    <string name = "setting">Setting</string>
+    <string name = "new_host">New host address</string>
+    <string name = "change_host_address">Change host address</string>
+
+    <string-array name="time">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+    </string-array>
+</resources>
