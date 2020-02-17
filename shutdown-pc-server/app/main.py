@@ -1,4 +1,5 @@
 import os
+import socket
 
 from flask import Flask, request
 
@@ -38,5 +39,6 @@ def test() -> str:
 
 
 if __name__ == '__main__':
+    print("IP {0}".format(socket.gethostbyname(socket.getfqdn())))
     app.run(debug=True, host='0.0.0.0')
 
