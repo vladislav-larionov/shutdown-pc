@@ -79,12 +79,14 @@ public class MainActivity extends AppCompatActivity
     private Integer readTime()
     {
         CheckBox useCustomTimeCB = (CheckBox) findViewById(R.id.useCustomTimeCB);
-        EditText timeField = (EditText) findViewById(R.id.timeField);
-        Spinner defaultTimeSpinner = (Spinner) findViewById(R.id.timeBox);
+        EditText timeField = (EditText) findViewById(R.id.customTimeField);
+        Spinner defaultTimeSpinner = (Spinner) findViewById(R.id.timeSpinner);
 
         String time;
-        if (useCustomTimeCB.isChecked()) time = timeField.getText().toString();
-        else time = defaultTimeSpinner.getSelectedItem().toString();
+        if (useCustomTimeCB.isChecked()) 
+			time = timeField.getText().toString();
+        else 
+			time = defaultTimeSpinner.getSelectedItem().toString();
 
         if (time.isEmpty()) return -1;
         return ((int) (Double.parseDouble(time) * 60));
@@ -100,25 +102,27 @@ public class MainActivity extends AppCompatActivity
     public void onClickUseCustomTime(View view)
     {
         CheckBox useCustomTimeCB = (CheckBox) findViewById(R.id.useCustomTimeCB);
-        EditText timeField = (EditText) findViewById(R.id.timeField);
-        Spinner defaultTimeSpinner = (Spinner) findViewById(R.id.timeBox);
+        Spinner defaultTimeSpinner = (Spinner) findViewById(R.id.timeSpinner);
         if (useCustomTimeCB.isChecked())
         {
-            timeField.setFocusable(true);
-            timeField.setClickable(true);
-            timeField.setFocusableInTouchMode(true);
-            timeField.setCursorVisible(true);
+            setCustomTimeFieldEnabled(true);
             defaultTimeSpinner.setEnabled(false);
         }
         else
         {
-            timeField.setFocusable(false);
-            timeField.setClickable(false);
-            timeField.setCursorVisible(false);
-            timeField.setFocusableInTouchMode(false);
+            setCustomTimeFieldEnabled(false);
             defaultTimeSpinner.setEnabled(true);
         }
     }
+
+	private void setCustomTimeFieldEnabled(boolean value)
+	{
+        EditText customTimeField = (EditText) findViewById(R.id.customTimeField);
+        customTimeField.setFocusable(value);
+        customTimeField.setClickable(value);
+        customTimeField.setFocusableInTouchMode(value);
+        customTimeField.setCursorVisible(value);
+	}
 
     public void onClickCancelShutdown(View view)
     {

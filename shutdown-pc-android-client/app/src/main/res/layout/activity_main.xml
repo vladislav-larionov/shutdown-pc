@@ -41,13 +41,16 @@
 
     <LinearLayout
         android:id = "@+id/linearLayout2"
-        android:layout_width = "259dp"
-        android:layout_height = "40dp"
+        android:layout_width = "265dp"
+        android:layout_height = "57dp"
         android:layout_marginStart = "25dp"
         android:layout_marginTop = "209dp"
         android:layout_marginEnd = "25dp"
+        android:layout_marginBottom = "2dp"
         android:orientation = "horizontal"
+        app:layout_constraintBottom_toTopOf = "@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintHorizontal_bias = "0.52"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@+id/imageButton">
 
@@ -59,7 +62,7 @@
             android:text = "@string/shutdown" />
 
         <Spinner
-            android:id = "@+id/timeBox"
+            android:id = "@+id/timeSpinner"
             android:layout_width = "136dp"
             android:layout_height = "49dp"
             android:entries = "@array/time"
@@ -69,34 +72,16 @@
 
     <LinearLayout
         android:id = "@+id/linearLayout"
-        android:layout_width = "258dp"
-        android:layout_height = "195dp"
+        android:layout_width = "262dp"
+        android:layout_height = "108dp"
         android:layout_marginStart = "25dp"
-        android:layout_marginTop = "7dp"
+        android:layout_marginTop = "2dp"
         android:layout_marginEnd = "25dp"
         android:orientation = "vertical"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf = "@+id/linearLayout4">
 
-        <CheckBox
-            android:id = "@+id/useCustomTimeCB"
-            android:layout_width = "match_parent"
-            android:layout_height = "wrap_content"
-            android:onClick = "onClickUseCustomTime"
-            android:text = "@string/useCustomTime" />
-
-
-        <EditText
-            android:id = "@+id/timeField"
-            android:layout_width = "match_parent"
-            android:layout_height = "wrap_content"
-            android:clickable = "false"
-            android:cursorVisible = "false"
-            android:ems = "10"
-            android:focusable = "false"
-            android:focusableInTouchMode = "false"
-            android:inputType = "numberDecimal" />
 
         <Button
             android:id = "@+id/cancel"
@@ -112,6 +97,37 @@
             android:onClick = "onClickExit"
             android:text = "@string/exit" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id = "@+id/linearLayout4"
+        android:layout_width = "265dp"
+        android:layout_height = "82dp"
+        android:layout_marginStart = "75dp"
+        android:layout_marginTop = "2dp"
+        android:layout_marginEnd = "71dp"
+        android:orientation = "vertical"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/linearLayout2">
+
+        <CheckBox
+            android:id = "@+id/useCustomTimeCB"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:onClick = "onClickUseCustomTime"
+            android:text = "@string/useCustomTime" />
+
+        <EditText
+            android:id = "@+id/customTimeField"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:clickable = "false"
+            android:cursorVisible = "false"
+            android:ems = "10"
+            android:focusable = "false"
+            android:focusableInTouchMode = "false"
+            android:inputType = "numberDecimal" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
