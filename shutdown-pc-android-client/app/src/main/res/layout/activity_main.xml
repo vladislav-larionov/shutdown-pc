@@ -6,128 +6,135 @@
     android:layout_height = "match_parent"
     tools:context = ".MainActivity">
 
-    <TextView
-        android:id = "@+id/connectionValueLabel"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginStart = "14dp"
-        android:layout_marginTop = "30dp"
-        android:text = "@string/disconnected"
-        android:textColor = "@color/disconnected"
-        app:layout_constraintStart_toEndOf = "@+id/textView5"
-        app:layout_constraintTop_toTopOf = "parent" />
-
-    <TextView
-        android:id = "@+id/textView5"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginStart = "28dp"
-        android:layout_marginTop = "30dp"
-        android:text = "@string/status"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent" />
-
-    <ImageButton
-        android:id = "@+id/imageButton"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginStart = "12dp"
-        android:layout_marginTop = "16dp"
-        android:background = "#00000000"
-        android:onClick = "onClickConnect"
-        app:layout_constraintStart_toEndOf = "@+id/connectionValueLabel"
-        app:layout_constraintTop_toTopOf = "parent"
-        app:srcCompat = "@drawable/ic_loop" />
-
     <LinearLayout
-        android:id = "@+id/linearLayout2"
-        android:layout_width = "265dp"
-        android:layout_height = "57dp"
-        android:layout_marginStart = "25dp"
-        android:layout_marginTop = "209dp"
-        android:layout_marginEnd = "25dp"
-        android:layout_marginBottom = "2dp"
-        android:orientation = "horizontal"
-        app:layout_constraintBottom_toTopOf = "@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintHorizontal_bias = "0.52"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/imageButton">
-
-        <Button
-            android:id = "@+id/shutdown"
-            android:layout_width = "131dp"
-            android:layout_height = "wrap_content"
-            android:onClick = "onClickShutdown"
-            android:text = "@string/shutdown" />
-
-        <Spinner
-            android:id = "@+id/timeSpinner"
-            android:layout_width = "136dp"
-            android:layout_height = "49dp"
-            android:entries = "@array/time"
-            android:textAlignment = "center" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id = "@+id/linearLayout"
-        android:layout_width = "262dp"
-        android:layout_height = "108dp"
-        android:layout_marginStart = "25dp"
-        android:layout_marginTop = "2dp"
-        android:layout_marginEnd = "25dp"
+        android:layout_width = "412dp"
+        android:layout_height = "417dp"
+        android:gravity = "center"
         android:orientation = "vertical"
+        app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/linearLayout4">
+        app:layout_constraintStart_toStartOf = "parent">
 
-
-        <Button
-            android:id = "@+id/cancel"
-            android:layout_width = "match_parent"
-            android:layout_height = "61dp"
-            android:onClick = "onClickCancelShutdown"
-            android:text = "@string/cancel" />
-
-        <Button
-            android:id = "@+id/exit"
-            android:layout_width = "match_parent"
+        <LinearLayout
+            android:id = "@+id/statusWidget"
+            android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:onClick = "onClickExit"
-            android:text = "@string/exit" />
+            android:orientation = "horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:id = "@+id/textView5"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:text = "@string/status"
+                android:textSize = "24sp" />
 
-    <LinearLayout
-        android:id = "@+id/linearLayout4"
-        android:layout_width = "265dp"
-        android:layout_height = "82dp"
-        android:layout_marginStart = "75dp"
-        android:layout_marginTop = "2dp"
-        android:layout_marginEnd = "71dp"
-        android:orientation = "vertical"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/linearLayout2">
+            <TextView
+                android:id = "@+id/connectionValueLabel"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginLeft = "15dp"
+                android:text = "@string/disconnected"
+                android:textColor = "@color/disconnected"
+                android:textSize = "24sp" />
 
-        <CheckBox
-            android:id = "@+id/useCustomTimeCB"
-            android:layout_width = "match_parent"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id = "@+id/timeWidget"
+            android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:onClick = "onClickUseCustomTime"
-            android:text = "@string/useCustomTime" />
+            android:layout_margin = "25dp"
+            android:orientation = "vertical">
 
-        <EditText
-            android:id = "@+id/customTimeField"
-            android:layout_width = "match_parent"
+            <LinearLayout
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:orientation = "horizontal">
+
+                <ImageButton
+                    android:id = "@+id/minusBtn"
+                    android:layout_width = "35dp"
+                    android:layout_height = "35dp"
+                    android:layout_gravity = "center"
+                    android:layout_margin = "5dp"
+                    android:background = "@drawable/icons8_minus_35px"
+                    android:onClick = "onClickMinusBtn" />
+
+                <LinearLayout
+                    android:layout_width = "200dp"
+                    android:layout_height = "50dp"
+                    android:orientation = "vertical">
+
+                    <EditText
+                        android:id = "@+id/customTimeField"
+                        android:layout_width = "match_parent"
+                        android:layout_height = "match_parent"
+                        android:inputType = "numberDecimal"
+                        android:visibility = "gone" />
+
+                    <Spinner
+                        android:id = "@+id/timeSpinner"
+                        android:layout_width = "200dp"
+                        android:layout_height = "50dp"
+                        android:entries = "@array/time"
+                        android:textAlignment = "center" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id = "@+id/plusBtn"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_gravity = "center"
+                    android:layout_margin = "5dp"
+                    android:background = "@drawable/icons8_plus_35px"
+                    android:onClick = "onClickPlusBtn" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id = "@+id/useCustomTimeLabel"
+                android:layout_width = "200dp"
+                android:layout_height = "50dp"
+                android:layout_gravity = "center"
+                android:gravity = "center"
+                android:onClick = "onClickUseCustomTime"
+                android:text = "@string/useCustomTime"
+                android:textAlignment = "center"
+                android:textAllCaps = "false"
+                android:textColor = "#000000"
+                android:textSize = "18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id = "@+id/buttonsWidget"
+            android:layout_width = "200dp"
             android:layout_height = "wrap_content"
-            android:clickable = "false"
-            android:cursorVisible = "false"
-            android:ems = "10"
-            android:focusable = "false"
-            android:focusableInTouchMode = "false"
-            android:inputType = "numberDecimal" />
+            android:orientation = "vertical">
+
+
+            <Button
+                android:id = "@+id/shutdown"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:onClick = "onClickShutdown"
+                android:text = "@string/shutdown" />
+
+            <Button
+                android:id = "@+id/cancel"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:onClick = "onClickCancelShutdown"
+                android:text = "@string/cancel" />
+
+            <Button
+                android:id = "@+id/exit"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:onClick = "onClickExit"
+                android:text = "@string/exit" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

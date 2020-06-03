@@ -37,6 +37,8 @@ local.properties
 /*/.idea/*
 /*/.DS_Store
 /*/build
+/*/dist
+/*/*.spec
 /*/captures
 /*/.externalNativeBuild
 /*/.cxx
