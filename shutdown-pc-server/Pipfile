@@ -4,9 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+invoke = "*"
+pycodestyle = "*"
+pylint = "*"
+rope = "*"
 
 [packages]
-flask = "*"
+pyside2 = "*"
+pypiwin32 = "*"
+pyinstaller = "*"
+ifaddr = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3"
