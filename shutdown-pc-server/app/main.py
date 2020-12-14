@@ -13,5 +13,5 @@ if __name__ == "__main__":
 
     widget = Server()
     widget.show()
-
+    widget.to_tray()
     sys.exit(app.exec_())
