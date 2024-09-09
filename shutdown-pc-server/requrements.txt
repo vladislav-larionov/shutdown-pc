@@ -1,0 +1,15 @@
+altgraph==0.17.4
+certifi==2024.8.30
+distlib==0.3.8
+filelock==3.16.0
+ifaddr==0.2.0
+packaging==24.1
+pbr==6.1.0
+pipenv==2024.0.1
+pipenv-to-requirements==0.9.0
+platformdirs==4.3.2
+pyinstaller==6.10.0
+pyinstaller-hooks-contrib==2024.8
+PySide2==5.15.2.1
+shiboken2==5.15.2.1
+virtualenv==20.26.4

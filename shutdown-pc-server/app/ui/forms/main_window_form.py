@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
 
         self.address = QLineEdit(self.layoutWidget)
         self.address.setObjectName(u"address")
-        self.address.setReadOnly(True)
+        self.address.setReadOnly(False)
 
         self.horizontalLayout_2.addWidget(self.address)
 

@@ -3,20 +3,23 @@
 Main window of the app
 """
 import os
+from os.path import expanduser, join, exists
 
 import ifaddr
 from PySide2.QtCore import Slot, SIGNAL, Qt
 from PySide2.QtNetwork import QTcpServer, QHostAddress, QTcpSocket
 from PySide2.QtWidgets import QMainWindow, QTableWidgetItem, QStyle, QApplication
 
-from ui.forms.main_window_form import Ui_MainWindow
-from ui.forms.tray_widget import TrayWidget
+from app.ui.forms.tray_widget import TrayWidget
+from app.ui.forms.main_window_form import Ui_MainWindow
 
 
 class Server(QMainWindow):
     """
     Class that describes main window of the app
     """
+    settings_path = join(expanduser("~"), '.shutdown-pc')
+    ip_setting_file_path = join(settings_path, 'ip.txt')
 
     def signals(self):
         """ Connect signals from ui """
@@ -25,6 +28,7 @@ class Server(QMainWindow):
         self.connect(self.main_window_ui.to_tray_btn, SIGNAL("clicked()"), self.to_tray)
         self.main_window_ui.address_label.clicked.connect(self.copy_address_to_clipboard)
         self.main_window_ui.port_label.clicked.connect(self.copy_port_to_clipboard)
+        self.main_window_ui.address.textEdited.connect(self.store_new_ip)
 
     def __init__(self):
         """ Constructor of widget """
@@ -35,12 +39,31 @@ class Server(QMainWindow):
         Ui_MainWindow.setupUi(self.main_window_ui, self)
         self.main_window_ui.clients_table.setColumnCount(2)
         self.main_window_ui.clients_table.setHorizontalHeaderLabels(['ip', 'port'])
+        self.load_ip_address()
         self.tray_icon = TrayWidget(self.style().standardIcon(QStyle.SP_ComputerIcon), self)
         self.signals()
         self.server = QTcpServer(self)
         self.server.newConnection.connect(self.new_socket_slot)
         self.start_server()
         self.clients = list()
+
+
+    def load_ip_address(self):
+        if not exists(self.settings_path):
+            os.makedirs(self.settings_path, exist_ok=True)
+        if exists(self.ip_setting_file_path):
+            with open(self.ip_setting_file_path, 'r') as file:
+                ip = file.readline().strip()
+                print(ip)
+                self.main_window_ui.address.setText(ip)
+
+
+    @Slot()
+    def store_new_ip(self):
+        print(f"store_new_ip {self.main_window_ui.address.text()}")
+        with open(self.ip_setting_file_path, 'w') as file:
+            file.write(self.main_window_ui.address.text())
+
 
     @Slot()
     def to_tray(self):
@@ -52,18 +75,11 @@ class Server(QMainWindow):
         if self.server.listen(QHostAddress.AnyIPv4, 9090):
             self.set_start_mode(True)
             self.main_window_ui.log.append("Server is started")
-            self.main_window_ui.address.setText(str(self.local_ip()))
             self.main_window_ui.port.setText(str(self.server.serverPort()))
             self.clients = list()
         else:
             self.main_window_ui.log.append(self.server.errorString())
             self.set_start_mode(False)
-
-    def local_ip(self):
-        adapters = ifaddr.get_adapters()
-        for adapter in adapters:
-            if adapter.nice_name == 'Intel(R) I211 Gigabit Network Connection':
-                return adapter.ips[1].ip
 
     def set_start_mode(self, started):
         self.main_window_ui.start_btn.setEnabled(not started)
