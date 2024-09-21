@@ -13,12 +13,13 @@ import java.net.Socket;
 public class TcpClient extends AsyncTask< Void, Void, Void >
 {
     private Socket socket;
-    private String serverAddress = "192.168.1.45";
+    private String serverAddress = "";
     private int port = 9090;
     private OnTcpEventHandler eventListener = null;
 
-    public TcpClient(OnTcpEventHandler eventListener)
+    public TcpClient(String address, OnTcpEventHandler eventListener)
     {
+        setServerAddress(address);
         this.eventListener = eventListener;
     }
 
@@ -27,7 +28,8 @@ public class TcpClient extends AsyncTask< Void, Void, Void >
         this.serverAddress = address;
         try
         {
-            socket.close();
+            if (socket != null)
+                socket.close();
         } catch (IOException e)
         {
             eventListener.onChangeConnectionStatus(false);

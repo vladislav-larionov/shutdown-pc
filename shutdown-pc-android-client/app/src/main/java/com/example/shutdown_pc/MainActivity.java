@@ -2,6 +2,7 @@ package com.example.shutdown_pc;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,17 +17,21 @@ import com.example.shutdown_pc.tcp_client.TcpClient;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Scanner;
+
 public class MainActivity extends AppCompatActivity
 {
     private TcpClient tcpClient;
+    private final String HOST_FILE_NAME = ".host.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        tcpClient = new TcpClient(new TcpClient.OnTcpEventHandler()
+        tcpClient = new TcpClient(getSavedHost(), new TcpClient.OnTcpEventHandler()
                 {
                     @Override
                     public void onChangeConnectionStatus(final boolean IsConnected)
@@ -158,6 +163,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which)
                     {
                         dialog.dismiss();
+                        saveHostIpToFile(newHost.getText().toString());
                         setServerAddress(newHost.getText().toString());
                     }
                 })
@@ -170,5 +176,35 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
         builder.show();
+    }
+    private void saveHostIpToFile(String host) {
+        // https://stackoverflow.com/questions/51565897/saving-files-in-android-for-beginners-internal-external-storage
+        String state = Environment.getExternalStorageState();
+        if (!Environment.MEDIA_MOUNTED.equals(state))
+            return;
+        File file = new File(getExternalFilesDir(null), HOST_FILE_NAME);
+        FileOutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(file, false);
+            outputStream.write(host.getBytes());
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getSavedHost() {
+        File file = new File(getExternalFilesDir(null), HOST_FILE_NAME);
+        if (!file.exists())
+            return "";
+        try {
+            Scanner scanner = new Scanner(file);
+            String host = scanner.nextLine();
+            return host;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }
