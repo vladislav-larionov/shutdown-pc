@@ -15,7 +15,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
-from ui.forms.clickable_qlabel import ClickableQLabel
+from app.ui.forms.clickable_qlabel import ClickableQLabel
 
 
 class Ui_MainWindow(object):
